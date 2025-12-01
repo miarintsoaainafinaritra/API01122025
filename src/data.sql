@@ -7,11 +7,8 @@ CREATE TABLE study (
     is_completed BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-
 INSERT INTO study (id_study, title, description, hours_per_week, start_date, is_completed)
 VALUES (1, 'Introduction à la programmation', 'Cours de base sur la programmation informatique', 10.0, '2023-01-15', FALSE);
-
 
 SELECT * FROM study;
 
