@@ -16,7 +16,7 @@ public class Main {
     }
 
     public void start() {
-        // Créer la table si elle n'existe pas
+      
         studyDAO.createTable();
 
         boolean running = true;
@@ -242,7 +242,7 @@ public class Main {
             scanner.next();
         }
         int value = scanner.nextInt();
-        scanner.nextLine(); // Consommer la nouvelle ligne
+        scanner.nextLine();
         return value;
     }
 
@@ -252,25 +252,16 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        // Configuration de la base de données
+        
         DatabaseConfig config = new DatabaseConfig();
 
-        // Vous pouvez modifier la configuration ici si nécessaire
-        // config.setUrl("jdbc:mysql://localhost:3306/studydb");
-        // config.setUsername("votre_utilisateur");
-        // config.setPassword("votre_mot_de_passe");
-
-        // Création de la connexion à la base de données
         DatabaseConnection dbConnection = new DatabaseConnection(config);
-
-        // Création du DAO
+      
         StudyDAO studyDAO = new StudyDAO(dbConnection);
 
-        // Création et démarrage de l'application
         Main app = new Main(studyDAO);
         app.start();
 
-        // Fermeture de la connexion à la base de données
         dbConnection.closeConnection();
     }
 }
