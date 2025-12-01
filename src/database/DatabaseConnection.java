@@ -8,20 +8,19 @@ public class DatabaseConnection {
     private Connection connection;
     private DatabaseConfig config;
 
-    // Constructeur avec injection de configuration
+
     public DatabaseConnection(DatabaseConfig config) {
         this.config = config;
         this.connection = null;
     }
 
-    // Méthode pour établir la connexion
+   
     public Connection getConnection() {
         if (connection == null) {
             try {
-                // Charger le driver JDBC
+          
                 Class.forName(config.getDriver());
 
-                // Établir la connexion
                 connection = DriverManager.getConnection(
                         config.getUrl(),
                         config.getUsername(),
@@ -38,8 +37,6 @@ public class DatabaseConnection {
         }
         return connection;
     }
-
-    // Méthode pour fermer la connexion
     public void closeConnection() {
         if (connection != null) {
             try {
@@ -52,7 +49,6 @@ public class DatabaseConnection {
         }
     }
 
-    // Méthode pour vérifier si la connexion est active
     public boolean isConnected() {
         try {
             return connection != null && !connection.isClosed();
@@ -60,8 +56,6 @@ public class DatabaseConnection {
             return false;
         }
     }
-
-    // Méthode pour réinitialiser la connexion
     public void reconnect() {
         closeConnection();
         getConnection();
