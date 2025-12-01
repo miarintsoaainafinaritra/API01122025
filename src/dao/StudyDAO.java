@@ -10,12 +10,12 @@ import java.util.List;
 public class StudyDAO {
     private DatabaseConnection dbConnection;
 
-    // Constructeur avec injection de dépendance
+    
     public StudyDAO(DatabaseConnection dbConnection) {
         this.dbConnection = dbConnection;
     }
 
-    // Méthode pour créer la table si elle n'existe pas
+   
     public void createTable() {
         String sql = "CREATE TABLE IF NOT EXISTS studies (" +
                 "id INT PRIMARY KEY AUTO_INCREMENT, " +
@@ -34,7 +34,6 @@ public class StudyDAO {
         }
     }
 
-    // Ajouter une nouvelle étude
     public boolean addStudy(Study study) {
         String sql = "INSERT INTO studies (title, description, duration) VALUES (?, ?, ?)";
 
@@ -47,7 +46,6 @@ public class StudyDAO {
 
             int rowsAffected = pstmt.executeUpdate();
 
-            // Récupérer l'ID généré
             if (rowsAffected > 0) {
                 try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
@@ -64,7 +62,6 @@ public class StudyDAO {
         return false;
     }
 
-    // Récupérer toutes les études
     public List<Study> getAllStudies() {
         List<Study> studies = new ArrayList<>();
         String sql = "SELECT * FROM studies ORDER BY title";
@@ -90,7 +87,6 @@ public class StudyDAO {
         return studies;
     }
 
-    // Récupérer une étude par son ID
     public Study getStudyById(int id) {
         Study study = null;
         String sql = "SELECT * FROM studies WHERE id = ?";
@@ -117,7 +113,6 @@ public class StudyDAO {
         return study;
     }
 
-    // Rechercher des études par titre
     public List<Study> searchStudiesByTitle(String keyword) {
         List<Study> studies = new ArrayList<>();
         String sql = "SELECT * FROM studies WHERE title LIKE ? ORDER BY title";
@@ -145,7 +140,6 @@ public class StudyDAO {
         return studies;
     }
 
-    // Mettre à jour une étude
     public boolean updateStudy(Study study) {
         String sql = "UPDATE studies SET title = ?, description = ?, duration = ? WHERE id = ?";
 
@@ -172,7 +166,6 @@ public class StudyDAO {
         }
     }
 
-    // Supprimer une étude
     public boolean deleteStudy(int id) {
         String sql = "DELETE FROM studies WHERE id = ?";
 
@@ -196,7 +189,6 @@ public class StudyDAO {
         }
     }
 
-    // Compter le nombre total d'études
     public int countStudies() {
         String sql = "SELECT COUNT(*) FROM studies";
         int count = 0;
