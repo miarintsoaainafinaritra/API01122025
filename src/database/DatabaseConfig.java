@@ -6,7 +6,7 @@ public class DatabaseConfig {
     private String password;
     private String driver;
 
-    // Constructeur avec paramètres
+   
     public DatabaseConfig(String url, String username, String password, String driver) {
         this.url = url;
         this.username = username;
@@ -14,7 +14,7 @@ public class DatabaseConfig {
         this.driver = driver;
     }
 
-    // Constructeur par défaut avec valeurs prédéfinies
+
     public DatabaseConfig() {
         this.url = "jdbc:mysql://localhost:3306/studydb";
         this.username = "root";
@@ -22,7 +22,6 @@ public class DatabaseConfig {
         this.driver = "com.mysql.cj.jdbc.Driver";
     }
 
-    // Getters
     public String getUrl() {
         return url;
     }
@@ -39,7 +38,6 @@ public class DatabaseConfig {
         return driver;
     }
 
-    // Setters
     public void setUrl(String url) {
         this.url = url;
     }
